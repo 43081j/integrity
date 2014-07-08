@@ -1,7 +1,7 @@
-File Integrity
+Integrity.js
 ===
 
-A small collection of utilities for checking integrity of a file.
+**Integrity.js** is a small collection of utilities for checking integrity of a file.
 
 It makes use of the `es6-promise` polyfill to provide promise functionality.
 
