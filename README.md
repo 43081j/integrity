@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 File Integrity
 ===
 
-A small (nKB) collection of utilities for checking integrity of a file.
+A small collection of utilities for checking integrity of a file.
 
 It makes use of the `es6-promise` polyfill to provide promise functionality.
 
@@ -59,9 +58,3 @@ fi.crc32(fs.createReadStream('test')).then(function(crc) {
 	console.log(crc); // CRC32 of file 'test'
 });
 ```
-=======
-integrity
-=========
-
-Data integrity checking utilities for Node and the browser
->>>>>>> 7fb6e1a651294a4fdb4a14c70f97838ca0f3736c
