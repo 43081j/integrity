@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 File Integrity
 ===
 
@@ -58,3 +59,9 @@ fi.crc32(fs.createReadStream('test')).then(function(crc) {
 	console.log(crc); // CRC32 of file 'test'
 });
 ```
+=======
+integrity
+=========
+
+Data integrity checking utilities for Node and the browser
+>>>>>>> 7fb6e1a651294a4fdb4a14c70f97838ca0f3736c
