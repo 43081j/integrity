@@ -2,7 +2,7 @@
   "name": "integrity",
   "version": "0.0.0",
   "description": "Data integrity checking utilities",
-  "main": "fi.js",
+  "main": "integrity.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/43081j/integrity.git"

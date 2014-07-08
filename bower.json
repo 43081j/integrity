@@ -2,7 +2,7 @@
   "name": "integrity",
   "version": "0.0.0",
   "description": "Data integrity checking utilities",
-  "main": "dist/fi.js",
+  "main": "dist/integrity.js",
   "moduleType": [
     "globals",
 	"amd",

@@ -11,13 +11,13 @@ Install
 Node:
 
 ```
-npm install fi
+npm install integrity
 ```
 
 Bower:
 
 ```
-bower install fi
+bower install integrity
 ```
 
 Use
@@ -26,13 +26,13 @@ Use
 Node:
 
 ```
-var fi = require('fi');
+var integrity = require('integrity');
 ```
 
 Bower:
 
 ```
-<script src="bower_components/fi/dist/fi.js"></script>
+<script src="bower_components/integrity/dist/integrity.js"></script>
 ```
 
 CRC32
@@ -48,13 +48,13 @@ The following inputs are supported:
 Example:
 
 ```javascript
-fi.crc32('123456789').then(function(crc) {
+integrity.crc32('123456789').then(function(crc) {
 	console.log(crc); // 0xCBF43926
 });
-fi.crc32(new Buffer('123456789')).then(function(crc) {
+integrity.crc32(new Buffer('123456789')).then(function(crc) {
 	console.log(crc); // 0xCBF43926
 });
-fi.crc32(fs.createReadStream('test')).then(function(crc) {
+integrity.crc32(fs.createReadStream('test')).then(function(crc) {
 	console.log(crc); // CRC32 of file 'test'
 });
 ```

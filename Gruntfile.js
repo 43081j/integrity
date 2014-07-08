@@ -11,15 +11,15 @@ module.exports = function(grunt) {
 				strict: true,
 				node: true
 			},
-			src: ['lib/*.js', 'fi.js']
+			src: ['lib/*.js', 'integrity.js']
 		},
 		concat: {
 			build: {
 				options: {
 					banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - <%= pkg.author %> */'
 				},
-				src: ['lib/common.js', 'lib/crc32.js', 'fi.js'],
-				dest: 'dist/fi.js'
+				src: ['lib/common.js', 'lib/crc32.js', 'integrity.js'],
+				dest: 'dist/integrity.js'
 			}
 		},
 		uglify: {
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 					mangle: true
 				},
 				files: {
-					'dist/fi.min.js': ['dist/fi.js']
+					'dist/integrity.min.js': ['dist/integrity.js']
 				}
 			}
 		}

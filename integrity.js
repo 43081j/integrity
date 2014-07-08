@@ -6,7 +6,7 @@
 	} else if(typeof exports === 'object') {
 		factory(exports, require('./lib/crc32'));
 	} else {
-		factory((root.fi = {}), root.fi_crc32);
+		factory((root.integrity = {}), root.integrity_crc32);
 	}
 })(this, function(exports, crc32) {
 	exports.crc32 = crc32.crc32;
