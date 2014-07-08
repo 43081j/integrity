@@ -1,0 +1,31 @@
+{
+  "name": "integrity",
+  "version": "0.0.0",
+  "description": "Data integrity checking utilities",
+  "main": "fi.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/43081j/integrity.git"
+  },
+  "keywords": [
+    "sha1",
+    "md5",
+    "crc32",
+    "file"
+  ],
+  "author": "43081j",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/43081j/integrity/issues"
+  },
+  "homepage": "https://github.com/43081j/integrity",
+  "dependencies": {
+    "es6-promise": "^1.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.5.0"
+  }
+}

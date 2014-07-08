@@ -1,0 +1,27 @@
+{
+  "name": "integrity",
+  "version": "0.0.0",
+  "description": "Data integrity checking utilities",
+  "main": "dist/fi.js",
+  "moduleType": [
+    "globals",
+	"amd",
+	"node"
+  ],
+  "keywords": [
+    "sha1",
+    "md5",
+    "crc32",
+    "file"
+  ],
+  "authors": [
+    "43081j"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/43081j/integrity.git"
+  },
+  "dependencies": {
+  }
+}
