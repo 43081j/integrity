@@ -1,4 +1,4 @@
-/*! integrity - v0.0.0 - 43081j */(function(root, factory) {
+/*! integrity - v0.0.3 - 43081j */(function(root, factory) {
 	'use strict';
 
 	if(typeof define === 'function' && define.amd) {
@@ -9,7 +9,9 @@
 		factory((root.integrity_common = {}));
 	}
 })(this, function(exports) {
-	exports.stringToBuffer = function(str) {
+	'use strict';
+
+	var stringToBuffer = function(str) {
 		var buff, bytes;
 
 		if(typeof Buffer === 'function') {
@@ -25,6 +27,69 @@
 
         return buff;
 	};
+
+	var bufferToArrayBuffer = function(buff) {
+		var ab, view;
+
+		if(typeof Buffer !== 'function' || !Buffer.isBuffer(buff)) {
+			return buff;
+		}
+
+		ab = new ArrayBuffer(buff.length);
+		view = new Uint8Array(ab);
+
+		for(var i = 0, max = buff.length; i < max; i++) {
+			view[i] = buff[i];
+		}
+
+		return ab;
+	};
+
+	var arrayBufferToBuffer = function(ab) {
+		var buffer = new Buffer(ab.byteLength),
+			v = new Uint8Array(ab);
+		for(var i = 0, max = buffer.length; i < max; i++) {
+			buffer[i] = v[i];
+		}
+		return buffer;
+	};
+
+	var calculate = function(buff, process, end) {
+		var sliceSize = 64,
+			offset;
+
+		if(typeof buff === 'string') {
+			buff = stringToBuffer(buff);
+		}
+
+		if(typeof Buffer === 'function' && Buffer.isBuffer(buff)) {
+			buff = bufferToArrayBuffer(buff);
+		}
+
+		if(buff.readable === true && typeof buff.on === 'function') {
+			buff.on('data', function(slice) {
+				process(bufferToArrayBuffer(slice));
+			});
+			buff.on('end', function() {
+				end();
+			});
+		} else {
+			if(!(buff instanceof ArrayBuffer)) {
+				end(true);
+				return;
+			}
+			for(var i = 0, max = Math.ceil((buff.byteLength || buff.length) / sliceSize); i < max; i++) {
+				offset = i * sliceSize;
+				process(buff.slice(offset, offset + sliceSize));
+			}
+			end();
+		}
+	};
+
+	exports.stringToBuffer = stringToBuffer;
+	exports.bufferToArrayBuffer = bufferToArrayBuffer;
+	exports.arrayBufferToBuffer = arrayBufferToBuffer;
+	exports.calculate = calculate;
 });
 
 (function(root, factory) {
@@ -90,63 +155,40 @@
 
     exports.crc32 = function(buff) {
 		var result = new Promise(function(resolve, reject) {
-			var i,
-				max,
-				crc = 0 ^ (-1),
-				offset,
-				slice,
-				sliceSize = 64;
+			var crc = 0 ^ (-1);
 
-			var processSlice = function(slice) {
-				for(var i = 0, max = slice.length; i < max; i++) {
-					crc = (crc >>> 8) ^ table[(crc ^ slice[i]) & 0xFF];
+			common.calculate(
+				buff,
+				function(slice) {
+					for(var i = 0, max = (slice.byteLength || slice.length); i < max; i++) {
+						crc = (crc >>> 8) ^ table[(crc ^ slice[i]) & 0xFF];
+					}
+				},
+				function(err) {
+					if(err) {
+						return reject();
+					}
+					resolve(((crc ^ (-1)) >>> 0).toString(16));
 				}
-				return crc;
-			};
-
-			var end = function() {
-				return (crc ^ (-1)) >>> 0;
-			};
-
-			if(typeof buff === 'string') {
-				buff = common.stringToBuffer(buff);
-			}
-
-			if(buff.readable === true && typeof buff.on === 'function') {
-				buff.on('data', function(slice) {
-					processSlice(slice);
-				});
-				buff.on('end', function() {
-					resolve(end());
-				});
-			} else {
-				if(!(buff instanceof ArrayBuffer) && (typeof Buffer !== 'function' || !(buff instanceof Buffer))) {
-					reject();
-					return;
-				}
-				for(i = 0, max = Math.ceil((buff.byteLength || buff.length) / sliceSize); i < max; i++) {
-					offset = i * sliceSize;
-					slice = new Uint8Array(buff.slice(offset, offset + sliceSize));
-					processSlice(slice);
-				}
-				resolve(end());
-			}
+			);
 		});
-		
+
 		return result;
-    };
+	};
 });
 
 (function(root, factory) {
 	'use strict';
 
 	if(typeof define === 'function' && define.amd) {
-		define(['exports', 'lib/crc32'], factory);
+		define(['exports', 'lib/crc32', 'lib/md5'], factory);
 	} else if(typeof exports === 'object') {
-		factory(exports, require('./lib/crc32'));
+		factory(exports, require('./lib/crc32'), require('./lib/md5'));
 	} else {
-		factory((root.integrity = {}), root.integrity_crc32);
+		factory((root.integrity = {}), root.integrity_crc32, root.integrity_md5);
 	}
-})(this, function(exports, crc32) {
+})(this, function(exports, crc32, md5) {
+	'use strict';
 	exports.crc32 = crc32.crc32;
+	exports.md5 = md5.md5;
 });
