@@ -5,6 +5,13 @@ Integrity.js
 
 It makes use of the `es6-promise` polyfill to provide promise functionality.
 
+MD5 is calculated using the `spark-md5` for browsers and `crypto` in Node.
+
+**TODO**
+
+- SHA-1, SHA-256, SHA-384, SHA-512
+- CRC16
+
 Install
 ==
 
