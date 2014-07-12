@@ -5,8 +5,6 @@ Integrity.js
 
 It makes use of the `es6-promise` polyfill to provide promise functionality.
 
-MD5 is calculated using the `spark-md5` for browsers and `crypto` in Node.
-
 **TODO**
 
 - SHA-1, SHA-256, SHA-384, SHA-512
@@ -52,6 +50,12 @@ All methods support the following inputs:
 - `ArrayBuffer`
 - `ReadableStream` (Node)
 - `File` (HTML5)
+
+Supported Algorithms
+==
+
+- CRC32 (built in)
+- MD5 (`spark-md5` for browers, `crypto` for Node)
 
 HTML5 File Example
 ==
