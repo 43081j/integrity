@@ -17,6 +17,8 @@
   "authors": [
     "43081j"
   ],
+  "ignore": [
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
