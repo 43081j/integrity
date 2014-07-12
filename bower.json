@@ -1,6 +1,6 @@
 {
   "name": "integrity",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Data integrity checking utilities",
   "main": "dist/integrity.js",
   "moduleType": [
