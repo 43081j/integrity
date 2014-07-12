@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/43081j/integrity",
   "dependencies": {
-    "es6-promise": "^1.0.0"
+    "es6-promise": "^1.0.0",
+    "spark-md5": "0.0.5"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
