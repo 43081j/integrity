@@ -9,6 +9,7 @@
 		factory((root.integrity = {}), root.integrity_crc32, root.integrity_md5);
 	}
 })(this, function(exports, crc32, md5) {
+	'use strict';
 	exports.crc32 = crc32.crc32;
 	exports.md5 = md5.md5;
 });

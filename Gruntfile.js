@@ -9,7 +9,17 @@ module.exports = function(grunt) {
 				nonew: true,
 				undef: true,
 				strict: true,
-				node: true
+				node: true,
+				globals: {
+					define: true,
+					require: true,
+					integrity_common: true,
+					integrity_md5: true,
+					integrity_crc32: true,
+					Promise: true,
+					SparkMD5: true,
+					crypto: true
+				}
 			},
 			src: ['lib/*.js', 'integrity.js']
 		},
